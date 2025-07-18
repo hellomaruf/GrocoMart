@@ -8,3 +8,6 @@ Route::get('/', function () {
 });
 Route::resource('login', web\LoginController::class);
 Route::post('authenticate', [web\LoginController::class, 'authenticate'])->name('authenticate.login');
+
+Route::get('register', [web\LoginController::class, 'register']);
+Route::post('register', [web\LoginController::class, 'processRegister'])->name('authenticate.register');

@@ -27,9 +27,9 @@ class LoginController extends Controller
 
         if ($validator->passes()) {
             if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-
+                return redirect('admin/dashboard')->with('success', 'Login Successfully!');
             }else{
-                return redirect('login')->with('Your Credintials are incorrect!');
+                return redirect('login')->with('error','Your Credintials are incorrect!');
             }
         }else{
             return redirect('login')->withInput()->withErrors($validator);

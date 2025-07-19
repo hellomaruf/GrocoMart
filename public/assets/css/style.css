@@ -12,4 +12,15 @@
 }
 body {
     font-family: var(--ff);
+    background-color: rgb(235, 235, 235);
 }
+.main-section-container {
+    width: 100%;
+    /* height: 100vh; */
+}
+.main-section {
+    /* height: 100vh; */
+}
+/* .main-section-container {
+    min-width: 100% !important;
+} */

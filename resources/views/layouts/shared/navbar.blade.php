@@ -20,16 +20,29 @@
 
     <!-- Profile image (with dropdown trigger) -->
     <div class="relative">
-      <img
-        src="https://i.pravatar.cc/40"
-        alt="Profile"
-        class="w-9 h-9 rounded-full cursor-pointer border-2 border-green-500"
-      >
-      <!-- Optional dropdown -->
-       <div class="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-md hidden">
-        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Profile</a>
-        <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100">Logout</a>
-      </div>
+       <div x-data="{ open: false }" class="relative inline-block text-left">
+    <!-- Trigger -->
+    <div @click="open = !open" class="flex items-center gap-2 cursor-pointer">
+        <p>{{ Auth::user()->name }}</p>
+        <i class="ph ph-caret-down"></i>
+    </div>
+
+    <!-- Dropdown -->
+    <div
+        x-show="open"
+        @click.away="open = false"
+        x-transition
+        class="absolute right-0 mt-2 w-40 bg-white shadow-lg rounded-md z-10"
+    >
+        <a href="" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            Profile
+        </a>
+
+        <a href="{{ route('account.logout') }}" type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+            Logout
+        </a>
+    </div>
+</div>
     </div>
   </div>
 </nav>

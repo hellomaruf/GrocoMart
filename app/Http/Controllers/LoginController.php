@@ -62,6 +62,11 @@ class LoginController extends Controller
 
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect('login')->with('success', 'User logout Successfully!');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

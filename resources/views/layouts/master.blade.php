@@ -12,7 +12,7 @@
         @include('layouts.shared.sidebar')
         <div class="main-section-container overflow-auto">
             @include('layouts.shared.navbar')
-            <div class="main-section  ">
+            <div class="main-section h-screen  ">
                 @yield('main_content')
             </div>
             @include('layouts.shared.footer')

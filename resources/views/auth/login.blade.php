@@ -8,7 +8,7 @@
 <section class="bg-gray-100">
   <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
     <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-[#1B8058]">
-      Groce<span>Mart</span>
+      <img class="w-[150px] object-contain" src="{{ asset('assets/images/logo.svg') }}" alt="" srcset="">
     </a>
     <div class="w-full bg-white rounded-lg  shadow-sm md:mt-0 sm:max-w-md xl:p-0">
       <div class="p-6 space-y-4 md:space-y-6 sm:p-8">

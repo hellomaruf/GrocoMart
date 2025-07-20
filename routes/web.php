@@ -8,6 +8,7 @@ Route::get('/', function () {
     return view('landing');
 });
 Route::resource('login', web\LoginController::class);
+Route::get('logout', [web\LoginController::class, 'logout'])->name('account.logout');
 Route::post('authenticate', [web\LoginController::class, 'authenticate'])->name('authenticate.login');
 
 Route::get('register', [web\LoginController::class, 'register']);

@@ -10,9 +10,9 @@
 <body>
     <div class="flex items-center justify-between ">
         @include('layouts.shared.sidebar')
-        <div class="main-section-container">
+        <div class="main-section-container overflow-auto">
             @include('layouts.shared.navbar')
-            <div class="main-section h-[calc(100vh-112px)] overflow-auto">
+            <div class="main-section  ">
                 @yield('main_content')
             </div>
             @include('layouts.shared.footer')

@@ -1,4 +1,4 @@
-<nav class="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between shadow-sm">
+<nav class="bg-white border-b border-gray-200 px-4 py-3 sticky top-0 flex items-center justify-between ">
   <!-- Left: Logo or Title -->
   <div class="flex items-center space-x-2">
     <i class="ph ph-app-window text-2xl text-green-600"></i>
@@ -7,12 +7,7 @@
 
   <!-- Center: (Optional search or nav items) -->
   <div class="hidden md:block">
-    <!-- Example search bar -->
-    <input
-      type="text"
-      placeholder="Search..."
-      class="px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
-    >
+
   </div>
 
   <!-- Right: Icons and profile -->

@@ -1,11 +1,13 @@
 <div x-data="{ open: true }" class="flex h-screen w-screen ">
 
   <!-- Sidebar -->
-  <div :class="open ? 'w-64' : 'w-20'" class="bg-white border-r border-gray-200 transition-all duration-300 overflow-hidden h-[100%]">
+  <div :class="open ? 'w-64' : 'w-20'" class="bg-white border-r border-gray-200 transition-all duration-300 overflow-hidden h-[100vh]">
     <div class="flex items-center p-4"
     :class="open ? 'justify-between' : 'justify-center'"
     >
-      <span x-show="open" class="text-lg font-semibold">MyApp</span>
+    <span x-show="open" class="text-lg font-semibold flex items-start justify-start">
+     <img class="w-[140px] h-[45px]" src="{{ asset('assets/images/logo.svg') }}" alt="" srcset="">
+    </span>
       <button @click="open = !open" class="text-gray-600 focus:outline-none">
         <i class="ph ph-list text-xl"></i>
       </button>

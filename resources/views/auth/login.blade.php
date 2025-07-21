@@ -43,6 +43,10 @@
             <a href="#" class="text-sm font-medium text-primary-600 hover:underline">Forgot password?</a>
           </div>
           <button type="submit" class="w-full text-white bg-[#1B8058] hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Sign in</button>
+          <div class="flex items-center gap-2">
+            <button class="w-[100%] bg-orange-500 text-white py-2.5 font-medium text-sm rounded-md">Customer</button>
+            <button class="w-[100%] bg-blue-500 text-white py-2.5 font-medium text-sm rounded-md">Admin</button>
+          </div>
           <p class="text-sm font-light text-gray-500">
             Don’t have an account yet? <a href="{{ route('authenticate.register') }}" class="font-medium text-primary-600 hover:underline">Sign up</a>
           </p>

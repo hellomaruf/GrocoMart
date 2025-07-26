@@ -13,11 +13,17 @@
       </button>
     </div>
     <nav class="mt-4 space-y-2">
-      <a href="#" class="flex items-center p-3 hover:bg-gray-100"
+      <a href="{{ url('admin/dashboard') }}" class="{{ request()->is('admin/dashboard') ? 'bg-[#13694C] text-white hover:bg-[#13694C]':'bg-white text-black hover:bg-gray-100' }} flex items-center p-3 "
       :class="open ? 'justify-start' : 'justify-center'"
       >
         <i class="ph ph-house text-xl"></i>
         <span x-show="open" class="ml-3">Dashboard</span>
+      </a>
+      <a href="{{ url('admin/product-list') }}" class="{{ request()->is('admin/product-list') ? 'bg-[#13694C] text-white hover:bg-[#13694C]':'bg-white text-black' }} flex items-center p-3 "
+      :class="open ? 'justify-start' : 'justify-center'"
+      >
+        <i class="ph ph-rows-plus-bottom text-xl"></i>
+        <span x-show="open" class="ml-3">Product List</span>
       </a>
       <a href="#" class="flex items-center p-3 hover:bg-gray-100"
       :class="open ? 'justify-start' : 'justify-center'"

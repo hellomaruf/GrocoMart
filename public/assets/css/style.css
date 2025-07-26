@@ -18,9 +18,10 @@ body {
     width: 100%;
     /* height: 100vh; */
 }
-.main-section {
-    /* height: 100vh; */
-}
+/* .main-section {
+    height: 100vh;
+    overflow-y: auto;
+} */
 /* .main-section-container {
     min-width: 100% !important;
 } */

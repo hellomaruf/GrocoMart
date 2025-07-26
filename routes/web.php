@@ -13,7 +13,12 @@ Route::post('authenticate', [web\LoginController::class, 'authenticate'])->name(
 Route::get('register', [web\LoginController::class, 'register']);
 Route::post('register', [web\LoginController::class, 'processRegister'])->name('authenticate.register');
 
-Route::group(['middleware' => ['adminCheck']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['adminCheck']], function () {
     Route::get('logout', [web\LoginController::class, 'logout'])->name('account.logout');
-    Route::resource('admin/dashboard', web\AdminDashboardController::class);
+    Route::resource('dashboard', web\AdminDashboardController::class);
+
+    Route::resource('product-list', web\ProductsController::class);
+
 });
+
+

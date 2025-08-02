@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class ProductsController extends Controller
 {
@@ -11,7 +13,8 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('product.product-list');
+        $products = DB::table('products')->get();
+        return view('product.product-list', compact('products'));
     }
 
     /**
@@ -27,7 +30,47 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+    $validated = Validator::make($request->all(), [
+    'name' => 'required|string|max:255',
+    'price' => 'required|numeric',
+    'discount_price' => 'nullable|numeric',
+    'stock' => 'required|integer',
+    'status' => 'required|in:active,inactive',
+    'description' => 'nullable|string',
+    'file' => 'nullable|file|mimes:jpg,jpeg,png,svg|max:2048',
+    ]);
+
+      if ($validated->fails()) {
+        return back()->withErrors($validated)->withInput();
+    }
+
+    $slug = Str::slug($request->name);
+    $count = DB::table('products')->where('slug', $slug)->count();
+    if ($count > 0) {
+        $slug .= '-' . ($count + 1);
+    }
+
+    $imgPath = null;
+    if ($request->hasFile('file')) {
+    $path = $request->file('file')->store('public');
+    $imgPath = str_replace('public/', '', $path); 
+}
+
+        DB::table('products')->insert([
+        'name' => $request->name,
+        'slug' => $slug,
+        'price' => $request->price,
+        'discount_price' => $request->discount_price,
+        'stock' => $request->stock,
+        'status' => $request->status,
+        'description' => $request->description,
+        'product_image' => $imgPath,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    return redirect('admin/product-list')->with('success', 'Product added Successfully!');
+
     }
 
     /**

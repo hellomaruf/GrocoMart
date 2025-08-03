@@ -50,12 +50,14 @@ class ProductsController extends Controller
         $slug .= '-' . ($count + 1);
     }
 
-    $imgPath = null;
-    if ($request->hasFile('file')) {
-    $path = $request->file('file')->store('public');
-    $imgPath = str_replace('public/', '', $path); 
-}
-
+     if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $destinationPath = public_path('uploads');
+        $file->move($destinationPath, $filename);
+        $imgPath = 'uploads/' . $filename;
+    }
+    
         DB::table('products')->insert([
         'name' => $request->name,
         'slug' => $slug,

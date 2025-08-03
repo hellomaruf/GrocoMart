@@ -26,7 +26,7 @@
                         <td class="px-6 py-4">{{ $key + 1 }}</td>
                         <td class="px-6 py-4">
                             @if($product->product_image)
-                                <img src="{{ asset('storage/' . $product->product_image) }}" alt="{{ $product->name }}" class="h-12 w-12 rounded object-cover">
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}" class="h-12 w-12 rounded object-cover">
                             @else
                                 <span class="text-gray-400 italic">N/A</span>
                             @endif

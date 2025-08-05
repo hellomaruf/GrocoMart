@@ -8,3 +8,10 @@ function fillCredentials(role) {
         document.getElementById("password").value = "customer";
     }
 }
+
+window.addEventListener("load", function () {
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+        preloader.style.display = "none";
+    }
+});

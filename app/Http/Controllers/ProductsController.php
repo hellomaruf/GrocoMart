@@ -57,7 +57,7 @@ class ProductsController extends Controller
         $file->move($destinationPath, $filename);
         $imgPath = 'uploads/' . $filename;
     }
-    
+
         DB::table('products')->insert([
         'name' => $request->name,
         'slug' => $slug,
@@ -88,16 +88,52 @@ class ProductsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $product = DB::table('products')->where('id' , $id)->first();
+        return view('product.edit', compact('product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
+public function update(Request $request, string $id)
+{
+
+    $validated = Validator::make($request->all(), [
+        'name' => 'required|string|max:255',
+        'price' => 'required|numeric',
+        'discount_price' => 'nullable|numeric',
+        'stock' => 'required|integer',
+        'status' => 'required|in:active,inactive',
+        'description' => 'nullable|string',
+        'file' => 'nullable|file|mimes:jpg,jpeg,png,svg|max:2048',
+    ]);
+
+    if ($validated->fails()) {
+        return back()->withErrors($validated)->withInput();
     }
+
+    $updateData = [
+        'name' => $request->name,
+        'price' => $request->price,
+        'discount_price' => $request->discount_price,
+        'stock' => $request->stock,
+        'status' => $request->status,
+        'description' => $request->description,
+        'updated_at' => now(),
+    ];
+
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $destinationPath = public_path('uploads');
+        $file->move($destinationPath, $filename);
+        $updateData['product_image'] = 'uploads/' . $filename;
+    }
+
+    DB::table('products')->where('id', $id)->update($updateData);
+
+    return redirect('admin/product-list')->with('success', 'Product updated successfully!');
+}
 
     /**
      * Remove the specified resource from storage.

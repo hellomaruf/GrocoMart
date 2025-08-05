@@ -1,3 +1,4 @@
+
 @extends('layouts.master')
 @section('main_content')
 <div class="m-4 p-4 bg-white rounded-xl shadow-sm">
@@ -18,6 +19,7 @@
                     <th class="px-6 py-3">Stock</th>
                     <th class="px-6 py-3">Status</th>
                     <th class="px-6 py-3">Description</th>
+                    <th class="px-6 py-3">Action</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200 text-sm text-gray-700">
@@ -26,7 +28,7 @@
                         <td class="px-6 py-4">{{ $key + 1 }}</td>
                         <td class="px-6 py-4">
                             @if($product->product_image)
-                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}" class="h-12 w-12 rounded object-cover">
+                                <img src="{{ asset($product->product_image) }}" alt="{{ $product->name }}" class="h-12 w-12 rounded object-cover block" >
                             @else
                                 <span class="text-gray-400 italic">N/A</span>
                             @endif
@@ -48,6 +50,11 @@
                             </span>
                         </td>
                         <td class="px-6 py-4">{{ Str::limit($product->description, 50) }}</td>
+                        <td class="px-6 py-4"><div class="flex items-center gap-2 justify-center">
+                        <a href="{{ route('product-list.edit',  $product->id ) }}" class="text-green-500 bg-green-100 h-5 w-5 rounded flex items-center justify-center"><i class="ph ph-pencil-simple-line"></i></a>
+                        <div class="text-red-500 bg-red-100 h-5 w-5 rounded flex items-center justify-center"><i class="ph ph-trash-simple"></i></div>
+                        </div></td>
+
                     </tr>
                 @empty
                     <tr>
